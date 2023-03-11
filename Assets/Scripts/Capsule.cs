@@ -41,6 +41,7 @@ public class Capsule : MonoBehaviour
             isTriggered = true;
             ChageColor(secondColor);
             CapsuleManager.Instance.numberOfTriggeredCapsule++;
+            SoundManager.Instance.PlayPopSoundEffect();
             if(CapsuleManager.Instance.IsAllCapsuleTriggered())
                 LevelManager.Instance.NextLevel();
         }
