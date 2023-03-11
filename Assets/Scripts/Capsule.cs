@@ -6,6 +6,7 @@ public class Capsule : MonoBehaviour
 {
     public string firstColor;
     public string secondColor;
+    [SerializeField] GameObject particle;
     Renderer _renderer;
     bool isTriggered;
     // Start is called before the first frame update
@@ -15,11 +16,13 @@ public class Capsule : MonoBehaviour
         // Debug.Log("SPAWN");
         _renderer = GetComponent<Renderer>();
         ChageColor(firstColor);
+        ChangeParticleColor(secondColor);
         isTriggered = false;
     }
 
     void Start() {
         ChageColor(firstColor);
+        ChangeParticleColor(secondColor);
     }
     void Update()
     {
@@ -28,10 +31,17 @@ public class Capsule : MonoBehaviour
 
     private void ChageColor(string colorHex)
     {
-        Debug.Log(colorHex);
         Color color;
         ColorUtility.TryParseHtmlString(colorHex, out color);
         _renderer.material.color = color;
+    }
+
+    private void ChangeParticleColor(string colorHex)
+    {
+        Color color;
+        ColorUtility.TryParseHtmlString(colorHex, out color);
+        ParticleSystem.MainModule main = particle.GetComponent<ParticleSystem>().main;
+        main.startColor = color;
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -42,9 +52,15 @@ public class Capsule : MonoBehaviour
             ChageColor(secondColor);
             CapsuleManager.Instance.numberOfTriggeredCapsule++;
             SoundManager.Instance.PlayPopSoundEffect();
+            TriggerParticle();
             if(CapsuleManager.Instance.IsAllCapsuleTriggered())
                 LevelManager.Instance.NextLevel();
         }
+    }
+
+    private void TriggerParticle()
+    {
+        particle.SetActive(true);
     }
 
     private void OnTriggerStay(Collider other) {
