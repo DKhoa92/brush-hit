@@ -34,6 +34,8 @@ public class Player : MonoBehaviour
         pivotPart = pivotPart == part1 ? part2 : part1;
         CameraController.Instance.SwitchCamera();
         rotationSpeed = -rotationSpeed;
+        if(!checkCollision())
+            LevelManager.Instance.GameOver();
     }
 
     public bool checkCollision()

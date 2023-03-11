@@ -9,14 +9,18 @@ public class Capsule : MonoBehaviour
     Renderer _renderer;
     bool isTriggered;
     // Start is called before the first frame update
-    void Start()
+
+    void OnEnable()
     {
+        // Debug.Log("SPAWN");
         _renderer = GetComponent<Renderer>();
-        isTriggered = false;
         ChageColor(firstColor);
+        isTriggered = false;
     }
 
-    // Update is called once per frame
+    void Start() {
+        ChageColor(firstColor);
+    }
     void Update()
     {
         
@@ -24,6 +28,7 @@ public class Capsule : MonoBehaviour
 
     private void ChageColor(string colorHex)
     {
+        Debug.Log(colorHex);
         Color color;
         ColorUtility.TryParseHtmlString(colorHex, out color);
         _renderer.material.color = color;
@@ -31,8 +36,14 @@ public class Capsule : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         // Debug.Log("CAPSULE: OnTriggerEnter");
-        isTriggered = true;
-        ChageColor(secondColor);
+        if(!isTriggered)
+        {
+            isTriggered = true;
+            ChageColor(secondColor);
+            CapsuleManager.Instance.numberOfTriggeredCapsule++;
+            if(CapsuleManager.Instance.IsAllCapsuleTriggered())
+                LevelManager.Instance.NextLevel();
+        }
     }
 
     private void OnTriggerStay(Collider other) {

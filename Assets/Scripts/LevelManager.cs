@@ -4,8 +4,19 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+    public static LevelManager Instance{get; private set;}
     Level[] levels;
     int currentLevelIndex;
+
+    private void Awake() 
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+        } else {
+            Instance = this;
+        }
+    }
 
     void Start()
     {
@@ -22,7 +33,7 @@ public class LevelManager : MonoBehaviour
     public void StartLevel(int levelIndex)
     {
         Level level = levels[levelIndex];
-        // CapsuleManager.Instance.SpawnCapsule()
+        CapsuleManager.Instance.SetActiveAll(false);
         GenerateLevel(level);
     }
 
@@ -48,10 +59,8 @@ public class LevelManager : MonoBehaviour
             {
                 for(int j=0; j<design.GetLength(1); j++)
                 {
-                    Debug.Log("i:"+i+", j:"+j);
                     if(design[i,j] == 1)
                     {
-                        Debug.Log(CapsuleManager.Instance);
                         CapsuleManager.Instance.SpawnCapsule(new Vector3(i,0,j), level.firstColor, level.secondColor);
                     }
                 }

@@ -8,8 +8,8 @@ public class CapsuleManager : MonoBehaviour
 
     [SerializeField] Capsule prefabCapsule;
     List<Capsule> capsulePool = new List<Capsule>();
-    int numberOfCapsule;
-    int numberOfTriggeredCapsule;
+    int numberOfCapsule =0;
+    public int numberOfTriggeredCapsule;
 
     private void Awake() 
     {
@@ -22,15 +22,13 @@ public class CapsuleManager : MonoBehaviour
     }
     void Start()
     {
-        numberOfCapsule = 0;
         numberOfTriggeredCapsule = 0;
-        capsulePool = new List<Capsule>();
     }
 
 
     void Update()
     {
-        
+
     }
 
     public Capsule SpawnCapsule(Vector3 position, string firstColor, string secondColor)
@@ -42,10 +40,11 @@ public class CapsuleManager : MonoBehaviour
             if(!capsulePool[i].gameObject.activeSelf)
             {
                 capsule = capsulePool[i];
-                capsule.gameObject.SetActive(true);
                 capsule.transform.position = position;
+                break;
             }
         }
+                
         if(capsule == null)
         {
             capsule = Instantiate(prefabCapsule, position, Quaternion.identity);
@@ -53,9 +52,18 @@ public class CapsuleManager : MonoBehaviour
         }
         capsule.firstColor = firstColor;
         capsule.secondColor = secondColor;
+        capsule.gameObject.SetActive(true);
         return capsule;
     }
 
+    public void SetActiveAll(bool status)
+    {
+        
+        for(int i=0;i<capsulePool.Count;i++)
+        {
+            capsulePool[i].gameObject.SetActive(false);
+        }
+    }
 
     public bool IsAllCapsuleTriggered()
     {
