@@ -1,0 +1,50 @@
+{
+    "level": [
+        {
+            "firstColor": "#FF0000",
+            "secondColor": "#FFFF00",
+            "platforms": [
+                {
+                    "name": "square10",
+                    "position": [0,0,0]
+                },
+                {
+                    "name": "square10",
+                    "position": [11,0,0]
+                }
+            ],
+            "playerStartPosition": {"x":5,"y":0,"z":5}
+        },
+        {
+            "firstColor": "#FF0000",
+            "secondColor": "#FFFF00",
+            "platforms": [
+                {
+                    "name": "rec5",
+                    "position": [0,0,6]
+                },
+                {
+                    "name": "square10",
+                    "position": [6,0,6]
+                },
+                {
+                    "name": "square10",
+                    "position": [16,0,6]
+                },
+                {
+                    "name": "rec5",
+                    "position": [26,0,6]
+                },
+                {
+                    "name": "rec10",
+                    "position": [6,0,0]
+                },
+                {
+                    "name": "rec10",
+                    "position": [6,0,16]
+                }
+            ],
+            "playerStartPosition": {"x":5,"y":0,"z":5}
+        }
+    ]
+}

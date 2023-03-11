@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class Capsule : MonoBehaviour
 {
-    Color firstColor;
-    Color secondColor;
+    public string firstColor;
+    public string secondColor;
     Renderer _renderer;
     bool isTriggered;
     // Start is called before the first frame update
     void Start()
     {
         _renderer = GetComponent<Renderer>();
+        isTriggered = false;
+        ChageColor(firstColor);
     }
 
     // Update is called once per frame
@@ -20,14 +22,17 @@ public class Capsule : MonoBehaviour
         
     }
 
-    private void ChageColor()
+    private void ChageColor(string colorHex)
     {
-        _renderer.material.color = Color.red;
+        Color color;
+        ColorUtility.TryParseHtmlString(colorHex, out color);
+        _renderer.material.color = color;
     }
 
     private void OnTriggerEnter(Collider other) {
         // Debug.Log("CAPSULE: OnTriggerEnter");
-        ChageColor();
+        isTriggered = true;
+        ChageColor(secondColor);
     }
 
     private void OnTriggerStay(Collider other) {

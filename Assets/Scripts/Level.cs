@@ -2,14 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level
+public class Level : MonoBehaviour
 {
-    Color firstColor;
-    Color SecondColor;
-    List<Platform> platforms;
+    public string firstColor;
+    public string secondColor;
+    public Platform[] platforms;
+    public Vector3 playerStartPosition;
 
-    public void AddPlatform(Platform platform)
+    public Level(string firstColor, string secondColor, Platform[] platforms, Vector3 playerStartPosition)
     {
-        platforms.Add(platform);
+        this.firstColor = firstColor;
+        this.secondColor = secondColor;
+        this.platforms = platforms;
+        this.playerStartPosition = playerStartPosition;
     }
 }
