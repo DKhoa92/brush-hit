@@ -25,10 +25,11 @@ public class CapsuleManager : MonoBehaviour
         numberOfTriggeredCapsule = 0;
     }
 
-
-    void Update()
+    public void Reset()
     {
-
+        numberOfCapsule = 0;
+        numberOfTriggeredCapsule = 0;
+        SetActiveAll(false);
     }
 
     public Capsule SpawnCapsule(Vector3 position, string firstColor, string secondColor, Transform parent)
@@ -59,7 +60,6 @@ public class CapsuleManager : MonoBehaviour
 
     public void SetActiveAll(bool status)
     {
-        
         for(int i=0;i<capsulePool.Count;i++)
         {
             capsulePool[i].gameObject.SetActive(false);

@@ -31,6 +31,12 @@ public class CameraController : MonoBehaviour
         SwitchToCamera(activeCameraIndex);
     }
 
+    public void ResetCamera()
+    {
+        activeCameraIndex = 0;
+        SwitchToCamera(0);
+    }
+
     void SwitchToCamera(int index)
     {
         cameras[index].Priority = 10;
@@ -40,11 +46,6 @@ public class CameraController : MonoBehaviour
                 cameras[i].Priority = 1;
         }
     }
-
-    // public void ZoomOut()
-    // {
-    //     activeCamera.
-    // }
 
     void ResetAllPriority(int priority)
     {

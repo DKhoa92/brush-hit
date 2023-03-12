@@ -46,16 +46,26 @@ public class Capsule : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         // Debug.Log("CAPSULE: OnTriggerEnter");
-        if(!isTriggered)
+        switch(GameManager.Instance.currentState)
         {
-            isTriggered = true;
-            ChageColor(secondColor);
-            SetActiveParticle(true);
-            CapsuleManager.Instance.numberOfTriggeredCapsule++;
-            SoundManager.Instance.PlayPopSoundEffect();
-            ScoreManager.Instance.AddCapsuleScore();
-            if(CapsuleManager.Instance.IsAllCapsuleTriggered())
-                LevelManager.Instance.NextLevel();
+            case GameManager.State.INIT:
+            case GameManager.State.READY:
+            case GameManager.State.GAME_OVER:
+                break;
+
+            case GameManager.State.PLAYING:
+                if(!isTriggered)
+                {
+                    isTriggered = true;
+                    ChageColor(secondColor);
+                    SetActiveParticle(true);
+                    CapsuleManager.Instance.numberOfTriggeredCapsule++;
+                    SoundManager.Instance.PlayPopSoundEffect();
+                    ScoreManager.Instance.AddCapsuleScore();
+                    if(CapsuleManager.Instance.IsAllCapsuleTriggered())
+                        GameManager.Instance.Win();
+                }
+                break;
         }
     }
 

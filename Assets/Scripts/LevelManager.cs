@@ -6,13 +6,19 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance{get; private set;}
     Level[] levels;
-    int currentLevelIndex;
-    int currentState;
+    LevelNumber currentLevel;
+    State currentState;
     
-    public const int STATE_INIT = 0;
-    public const int STATE_START = 1;
-    public const int STATE_PLAYING = 2;
-    public const int STATE_OVER = 3;
+    public enum LevelNumber{
+        LEVEL1=0,
+        LEVEL2=1,
+        LEVEL3=2,
+    }
+
+    public enum State{
+        INIT,
+        READY,
+    }
 
     private void Awake() 
     {
@@ -24,64 +30,54 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        SetState(STATE_INIT);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void SetState(int state)
+    void SetState(State state)
     {
         currentState = state;
         switch(state)
         {
-            case STATE_INIT:
-                currentLevelIndex = 0;
+            case State.INIT:
+                currentLevel = 0;
                 levels = LevelDesign.ARR_LEVEL;
-                StartLevel(currentLevelIndex);
                 break;
-            case STATE_START:
-                CapsuleManager.Instance.SetActiveAll(false);
+            case State.READY:
+                Level level = levels[(int)currentLevel];
+                CapsuleManager.Instance.Reset();
                 PlatformManager.Instance.SetActiveAll(false);
                 ScoreManager.Instance.ResetScore();
-                UIManager.Instance.UpdateLevelUI(levels[currentLevelIndex].level);
-                break;
-            case STATE_PLAYING:
-                break;
-            case STATE_OVER:
+                UIManager.Instance.UpdateLevelUI(level.number);
+                Player.Instance.Spawn(level.playerStartPosition);
+                GenerateLevel(level);
                 break;
         }
     }
 
-    public void StartLevel(int levelIndex)
+    public void Init()
     {
-        SetState(STATE_START);
-        Level level = levels[levelIndex];
-        GenerateLevel(level);
+        SetState(State.INIT);
+    }
+
+    public void SetupLevel(LevelNumber level)
+    {
+        currentLevel = level;
+        SetState(State.READY);
     }
 
     public void NextLevel()
     {
-        currentLevelIndex = ++currentLevelIndex % levels.Length;
-        Debug.Log("LEVEL MANAGER: NextLevel"+currentLevelIndex);
-        
-        StartLevel(currentLevelIndex);
+        int nextLevel = ((int)currentLevel+1) % levels.Length;
+        currentLevel = (LevelNumber) nextLevel;
+        // Debug.Log("LEVEL MANAGER: NextLevel"+currentLevel);
+        SetupLevel(currentLevel);
     }
 
-    public void GameOver()
+    public void Restart()
     {
-        Debug.Log("LEVEL MANAGER: GameOver");
-        SetState(STATE_OVER);
-        StartLevel(currentLevelIndex);
+        SetupLevel(currentLevel);
     }
 
     void GenerateLevel(Level level)
     {
+        // Debug.Log("LEVEL MANAGER: Generate");
         for(int k=0; k<level.platforms.Length; k++)
         {
             Platform platformBlueprint = level.platforms[k];

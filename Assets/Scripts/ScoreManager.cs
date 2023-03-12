@@ -33,7 +33,7 @@ public class ScoreManager : MonoBehaviour
 
     public void ResetScore()
     {
-        score = 0;
+        SetScore(0);
     }
 
     void SetScore(int score)

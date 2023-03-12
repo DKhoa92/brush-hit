@@ -18,6 +18,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI scoreTextUI;
     [SerializeField] TextMeshProUGUI levelTextUI;
+    [SerializeField] GameObject messageWinPopup;
+    [SerializeField] GameObject messageLosePopup;
 
     public void UpdateScoreUI(int score)
     {
@@ -27,5 +29,21 @@ public class UIManager : MonoBehaviour
     public void UpdateLevelUI(int level)
     {
         levelTextUI.text = level+"";
+    }
+
+    public void ShowWinPopup()
+    {
+        messageWinPopup.SetActive(true);
+    }
+
+    public void ShowLosePopup()
+    {
+        messageLosePopup.SetActive(true);
+    }
+
+    public void CloseMessagePopups()
+    {
+        messageWinPopup.SetActive(false);
+        messageLosePopup.SetActive(false);
     }
 }

@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Level : MonoBehaviour
 {
-    public int level;
+    public int number;
     public string firstColor;
     public string secondColor;
     public Platform[] platforms;
     public Vector3 playerStartPosition;
 
-    public Level(int level, string firstColor, string secondColor, Platform[] platforms, Vector3 playerStartPosition)
+    public Level(int number, string firstColor, string secondColor, Platform[] platforms, Vector3 playerStartPosition)
     {
-        this.level = level;
+        this.number = number;
         this.firstColor = firstColor;
         this.secondColor = secondColor;
         this.platforms = platforms;
