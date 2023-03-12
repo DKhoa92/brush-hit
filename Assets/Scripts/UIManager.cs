@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI scoreTextUI;
     [SerializeField] TextMeshProUGUI levelTextUI;
+    [SerializeField] GameObject tapToPlayTextUI;
     [SerializeField] GameObject messageWinPopup;
     [SerializeField] GameObject messageLosePopup;
 
@@ -47,5 +48,10 @@ public class UIManager : MonoBehaviour
     {
         messageWinPopup.SetActive(false);
         messageLosePopup.SetActive(false);
+    }
+
+    public void ToggleTextTapToPlay(bool status)
+    {
+        tapToPlayTextUI.SetActive(status);
     }
 }

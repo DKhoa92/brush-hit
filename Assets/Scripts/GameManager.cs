@@ -61,8 +61,10 @@ public class GameManager : MonoBehaviour
                 SetState(State.READY);
                 break;
             case State.READY:
+                UIManager.Instance.ToggleTextTapToPlay(true);
                 break;
             case State.PLAYING:
+                UIManager.Instance.ToggleTextTapToPlay(false);
                 Player.Instance.Play();
                 break;
             case State.WIN:
