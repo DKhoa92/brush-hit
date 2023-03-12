@@ -34,11 +34,13 @@ public class UIManager : MonoBehaviour
     public void ShowWinPopup()
     {
         messageWinPopup.SetActive(true);
+        messageWinPopup.GetComponentInChildren<TextMeshProUGUI>().text = "WIN\n"+ScoreManager.Instance.GetScore();
     }
 
     public void ShowLosePopup()
     {
         messageLosePopup.SetActive(true);
+        messageLosePopup.GetComponentInChildren<TextMeshProUGUI>().text = "LOSE\n"+ScoreManager.Instance.GetScore();
     }
 
     public void CloseMessagePopups()
