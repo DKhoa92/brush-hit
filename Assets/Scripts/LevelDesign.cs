@@ -13,8 +13,8 @@ public class LevelDesign
         "#FF0000",
         "#FFFF00",
         new Platform[]{
-            new Platform(GameDefine.PLATFORM_1, false, 0, 0),
-            // new Platform(GameDefine.PLATFORM_1, false, 0, 0)
+            new Platform(GameDefine.PLATFORM_1, false, 0, 0, new Vector3(0,0,0)),
+            new Platform(GameDefine.PLATFORM_1, false, 1, 1, new Vector3(10,0,0))
         },
         new Vector3(1,1,1)
     );
@@ -22,15 +22,16 @@ public class LevelDesign
         "#FFFF00",
         "#FF0000",
         new Platform[]{
-            new Platform(GameDefine.PLATFORM_2, false, 0, 0),
-            new Platform(GameDefine.PLATFORM_1, false, 0, 0),
-            new Platform(GameDefine.PLATFORM_2, false, 0, 0),
+            new Platform(GameDefine.PLATFORM_2, false, 0, 0, new Vector3(0,0,0)),
+            new Platform(GameDefine.PLATFORM_1, false, 0, 0, new Vector3(10,0,0)),
+            new Platform(GameDefine.PLATFORM_2, false, 0, 0, new Vector3(20,0,0)),
+            new Platform(GameDefine.PLATFORM_2, false, 0, 0, new Vector3(30,0,0)),
         },
         new Vector3(1,1,1)
     );
 
     public static Level[] ARR_LEVEL = new Level[]{
-        LEVEL_1,
         LEVEL_2,
+        LEVEL_1,
     };
 }

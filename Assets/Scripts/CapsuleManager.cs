@@ -31,7 +31,7 @@ public class CapsuleManager : MonoBehaviour
 
     }
 
-    public Capsule SpawnCapsule(Vector3 position, string firstColor, string secondColor)
+    public Capsule SpawnCapsule(Vector3 position, string firstColor, string secondColor, Transform parent)
     {
         Capsule capsule = null;
         numberOfCapsule++;
@@ -47,11 +47,12 @@ public class CapsuleManager : MonoBehaviour
                 
         if(capsule == null)
         {
-            capsule = Instantiate(prefabCapsule, position, Quaternion.identity);
+            capsule = Instantiate(prefabCapsule, parent);
             capsulePool.Add(capsule);
         }
         capsule.firstColor = firstColor;
         capsule.secondColor = secondColor;
+        capsule.transform.localPosition = position;
         capsule.gameObject.SetActive(true);
         return capsule;
     }
