@@ -17,6 +17,7 @@ public class Capsule : MonoBehaviour
         _renderer = GetComponent<Renderer>();
         ChageColor(firstColor);
         ChangeParticleColor(secondColor);
+        SetActiveParticle(false);
         isTriggered = false;
     }
 
@@ -52,15 +53,15 @@ public class Capsule : MonoBehaviour
             ChageColor(secondColor);
             CapsuleManager.Instance.numberOfTriggeredCapsule++;
             SoundManager.Instance.PlayPopSoundEffect();
-            TriggerParticle();
+            SetActiveParticle(true);
             if(CapsuleManager.Instance.IsAllCapsuleTriggered())
                 LevelManager.Instance.NextLevel();
         }
     }
 
-    private void TriggerParticle()
+    private void SetActiveParticle(bool status)
     {
-        particle.SetActive(true);
+        particle.SetActive(status);
     }
 
     private void OnTriggerStay(Collider other) {
