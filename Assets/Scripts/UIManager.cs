@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     }
 
     [SerializeField] TextMeshProUGUI scoreTextUI;
+    [SerializeField] TextMeshProUGUI levelTextUI;
 
     public void UpdateScoreUI(int score)
     {
@@ -25,6 +26,6 @@ public class UIManager : MonoBehaviour
 
     public void UpdateLevelUI(int level)
     {
-        
+        levelTextUI.text = level+"";
     }
 }

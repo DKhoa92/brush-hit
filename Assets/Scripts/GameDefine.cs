@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameDefine
 {
-    public const int PLAYER_ROTATION_SPEED = 200;
+    public const int PLAYER_ROTATION_SPEED = 150;
     public const int CAPSULE_SCORE = 10;
     public static int[,] PLATFORM_1 = {
         {1,1,1,1,1,1,1,1,1,1},

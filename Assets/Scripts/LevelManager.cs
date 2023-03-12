@@ -49,6 +49,7 @@ public class LevelManager : MonoBehaviour
                 CapsuleManager.Instance.SetActiveAll(false);
                 PlatformManager.Instance.SetActiveAll(false);
                 ScoreManager.Instance.ResetScore();
+                UIManager.Instance.UpdateLevelUI(levels[currentLevelIndex].level);
                 break;
             case STATE_PLAYING:
                 break;
@@ -94,7 +95,7 @@ public class LevelManager : MonoBehaviour
                 {
                     if(design[i,j] == 1)
                     {
-                        CapsuleManager.Instance.SpawnCapsule(new Vector3(i,0,j), level.firstColor, level.secondColor, platform.transform);
+                        CapsuleManager.Instance.SpawnCapsule(new Vector3(j,0,i), level.firstColor, level.secondColor, platform.transform);
                     }
                 }
             }

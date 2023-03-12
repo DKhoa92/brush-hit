@@ -7,14 +7,13 @@ public class Capsule : MonoBehaviour
     public string firstColor;
     public string secondColor;
     [SerializeField] GameObject particle;
-    Renderer _renderer;
+    [SerializeField] Renderer _renderer;
     bool isTriggered;
     // Start is called before the first frame update
 
     void OnEnable()
     {
         // Debug.Log("SPAWN");
-        _renderer = GetComponent<Renderer>();
         ChageColor(firstColor);
         ChangeParticleColor(secondColor);
         SetActiveParticle(false);
