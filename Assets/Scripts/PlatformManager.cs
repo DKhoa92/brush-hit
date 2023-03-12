@@ -5,10 +5,6 @@ using UnityEngine;
 public class PlatformManager : MonoBehaviour
 {
     public static PlatformManager Instance{get; private set;}
-
-    [SerializeField] Platform prefabPlatform;
-    List<Platform> platformPool = new List<Platform>();
-
     private void Awake() 
     {
         if (Instance != null && Instance != this)
@@ -18,6 +14,9 @@ public class PlatformManager : MonoBehaviour
             Instance = this;
         }
     }
+
+    [SerializeField] Platform prefabPlatform;
+    List<Platform> platformPool = new List<Platform>();
 
     public Platform SpawnPlatform(Vector3 position, Transform parent)
     {

@@ -48,6 +48,7 @@ public class LevelManager : MonoBehaviour
             case STATE_START:
                 CapsuleManager.Instance.SetActiveAll(false);
                 PlatformManager.Instance.SetActiveAll(false);
+                ScoreManager.Instance.ResetScore();
                 break;
             case STATE_PLAYING:
                 break;
