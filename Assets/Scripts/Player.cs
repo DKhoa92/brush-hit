@@ -15,13 +15,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    [SerializeField] GameObject part1;
-    [SerializeField] GameObject part2;
+    [SerializeField] PlayerPart part1;
+    [SerializeField] PlayerPart part2;
     [SerializeField] TrailRenderer[] trails;
     bool isOnCollision;
-    GameObject pivotPart;
+    PlayerPart pivotPart;
     float rotationSpeed;
-    State currentState;
+    public State currentState;
 
     public enum State
     {
@@ -134,7 +134,7 @@ public class Player : MonoBehaviour
 
     public bool IsOnCollision()
     {
-        return isOnCollision;
+        return pivotPart.isOnCollision;
     }
 
     private void OnTriggerEnter(Collider other) {
