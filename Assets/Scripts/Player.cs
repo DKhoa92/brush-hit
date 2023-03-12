@@ -136,46 +136,4 @@ public class Player : MonoBehaviour
     {
         return pivotPart.isOnCollision;
     }
-
-    private void OnTriggerEnter(Collider other) {
-        // Debug.Log("PLAYER: OnTriggerEnter");
-        switch(currentState)
-        {
-            case State.INIT:             
-            case State.SPAWN:
-            case State.DESPAWN:
-                break;
-            case State.PLAYING:
-                isOnCollision = true;
-                break;
-        } 
-    }
-
-    private void OnTriggerStay(Collider other) {
-        // Debug.Log("PLAYER: OnTriggerStay");
-        switch(currentState)
-        {
-            case State.INIT:             
-            case State.SPAWN:
-            case State.DESPAWN:
-                break;
-            case State.PLAYING:
-                isOnCollision = true;
-                break;
-        }
-    }
-
-    private void OnTriggerExit(Collider other) {
-        // Debug.Log("PLAYER: OnTriggerExit");
-        switch(currentState)
-        {
-            case State.INIT:             
-            case State.SPAWN:
-            case State.DESPAWN:
-                break;
-            case State.PLAYING:
-                isOnCollision = false;
-                break;
-        }
-    }
 }

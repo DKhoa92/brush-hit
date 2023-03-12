@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         SetState(State.GAME_OVER);
+        CameraController.Instance.ShakeCamera();
     }
 
     public void NextLevel()
